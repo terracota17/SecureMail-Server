@@ -1,0 +1,12 @@
+name: Auto check PR and push
+on:
+  push:
+    branches:
+      - master
+      
+jobs:
+  check-auto-pr-with-snyk:
+    runs-on: self-hosted
+    steps:
+      - name: Check out push
+        uses: actions/checkout@v4
