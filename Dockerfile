@@ -1,4 +1,4 @@
-FROM python:3.14.0a1-slim
+FROM python:3.14.0a4-alpine3.21
 RUN groupadd -r appgroup && useradd -r -g appgroup appuser
 WORKDIR /app
 
