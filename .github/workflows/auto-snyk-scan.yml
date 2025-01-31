@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-
+      
 jobs:
   check-auto-pr-with-snyk:
     runs-on: self-hosted
