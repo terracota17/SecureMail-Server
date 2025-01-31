@@ -1,6 +1,6 @@
 name: Auto check PR and push
 on:
-  push:
+  pull-request:
     branches:
       - master
       
