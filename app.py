@@ -36,10 +36,7 @@ ML_MODEL_NAME_URI = os.getenv("ML_MODEL_NAME_URI")
 
 model = joblib.load(ML_MODEL_NAME_URI) 
 
-class EmailAttachment(BaseModel):
-    name: str  
-    content: str 
-    content_type: str  
+
 
 class EmailData(BaseModel):
     From: EmailStr
@@ -48,7 +45,7 @@ class EmailData(BaseModel):
     Body: str
     Date: str
     Concatenated_URLs: Optional[str] = "No Data"
-    Attachments: Optional[List[EmailAttachment]] 
+    Attachments: Optional[List[dict]] 
 
 
 
