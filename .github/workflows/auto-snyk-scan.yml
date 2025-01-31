@@ -1,0 +1,8 @@
+name: Auto check PR and push
+#on: [push, pull_request]
+#jobs:
+ # check-auto-pr-with-snyk:
+  #  runs-on: ubuntu-latest
+   # steps:
+    #  - run |
+        
