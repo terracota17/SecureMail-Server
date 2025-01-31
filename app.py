@@ -37,7 +37,7 @@ ML_MODEL_NAME_URI = os.getenv("ML_MODEL_NAME_URI")
 model = joblib.load(ML_MODEL_NAME_URI) 
 
 
-
+#Validación de datos de entrada de usuario
 class EmailData(BaseModel):
     From: EmailStr
     To: EmailStr
@@ -162,7 +162,7 @@ async def analyze_attachment(attachment: str):
         return {"verdict": "unknown", "detail": str(e)}
 
 
-# Endpoint Principal
+# Endpoint Principal -- Limitar a 5 por minuto para evitar ataques de denegación de servicio DDOS O DOS con slowapi.limiter.
 @app.post("/")
 @limiter.limit("5 per minute")
 async def predict_emails(email: EmailData, request: Request):
