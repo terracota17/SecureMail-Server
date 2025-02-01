@@ -10,7 +10,7 @@ COPY app.py /app/
 COPY XGBoost.pkl /app/
 
 RUN mkdir -p /app/cache && chown -R appuser:appgroup /app
-ENV TRANSFORMERS_CACHE=/app/cache
+ENV HF_HOME=/app/cache
 USER appuser
 
 EXPOSE 10000
