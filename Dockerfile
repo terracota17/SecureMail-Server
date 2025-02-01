@@ -1,4 +1,7 @@
 FROM python:3.14.0a4-alpine3.21
+
+RUN apk add --no-cache shadow
+
 RUN groupadd -r appgroup && useradd -r -g appgroup appuser
 WORKDIR /app
 
