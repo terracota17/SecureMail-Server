@@ -10,3 +10,7 @@ jobs:
     steps:
       - name: Check out push
         uses: actions/checkout@v4
+        
+      - name: Run Snyk test
+        run: snyk test
+
