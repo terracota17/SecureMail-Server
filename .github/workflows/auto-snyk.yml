@@ -1,16 +1,30 @@
-name: Auto check PR and push
+name: Security Check with Snyk
+
 on:
-  pull-request:
+  pull_request:
     branches:
-      - master
-      
+      - main
+
 jobs:
-  check-auto-pr-with-snyk:
+  security-test:
     runs-on: self-hosted
     steps:
-      - name: Check out push
+      - name: Checkout code
         uses: actions/checkout@v4
-        
-      - name: Run Snyk test
-        run: snyk test
 
+      - name: Run Snyk Test
+        id: snyk
+        run: |
+          snyk test --json > snyk-results.json || true
+
+      - name: Format Snyk Results
+        id: format
+        run: |
+          echo "### Snyk Test Results" > snyk-report.md
+          cat snyk-results.json | jq '.vulnerabilities[] | "- **Package:** \(.package) \n- **Severity:** \(.severity) \n- **Description:** \(.description) \n"' >> snyk-report.md || echo "No vulnerabilities found." >> snyk-report.md
+
+      - name: Comment on PR
+        uses: mshick/add-pr-comment@v2
+        with:
+          message-path: snyk-report.md
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
