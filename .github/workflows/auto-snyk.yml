@@ -1,5 +1,5 @@
 
-name: GitHub AUto Snyk evaluation
+name: GitHub AUto Snyk evaluation (SCA + SAST)
 on: [push]
 jobs:
   Auto-snyk-test:
