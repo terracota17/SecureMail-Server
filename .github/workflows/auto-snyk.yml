@@ -5,11 +5,15 @@ jobs:
   Auto-snyk-test:
     runs-on: self-hosted
     steps:
+      
       - name: Checkout del código
         uses: actions/checkout@v4
-
+     
+      - name: snyk auth
+        run snyk auth ${{inputs.snyk-auth-token}}
+        
       - name: Ejecutar Snyk Test y Guardar JSON
-        run: snyk test --json > snyk-sca-report.json
+        run: snyk code test --json > snyk-sca-report.json
 
       - name: Ejecutar Snyk SAST (Static Application Security Testing) y Guardar JSON
         run: snyk monitor --json > snyk-sast-report.json
