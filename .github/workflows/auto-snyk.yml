@@ -1,5 +1,9 @@
 name: GitHub Auto Snyk Evaluation
-on: [push]
+on: [push, pull_request]
+
+permissions:
+  contents: write
+  security-events: write
 
 jobs:
   Auto-snyk-test:
@@ -8,12 +12,9 @@ jobs:
       
       - name: Checkout del código
         uses: actions/checkout@v4
-     
-      - name: snyk auth
-        run snyk auth ${{inputs.snyk-auth-token}}
         
-      - name: Ejecutar Snyk Test y Guardar JSON
-        run: snyk code test --json > snyk-sca-report.json
+      - name: Ejecutar Snyk SAST
+        run: snyk code test --sarif
 
       - name: Ejecutar Snyk SAST (Static Application Security Testing) y Guardar JSON
-        run: snyk monitor --json > snyk-sast-report.json
+        run: snyk monitor --sarif
