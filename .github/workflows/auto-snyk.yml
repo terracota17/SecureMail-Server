@@ -16,5 +16,5 @@ jobs:
       - name: Ejecutar Snyk SAST
         run: snyk code test --sarif --token ${{ secrets.SNYK_AUTH_TOKEN }}
 
-      - name: Ejecutar Snyk SAST (Static Application Security Testing) y Guardar JSON
+      - name: Ejecutar Snyk SCA
         run: snyk monitor --sarif --token ${{ secrets.SNYK_AUTH_TOKEN }}
