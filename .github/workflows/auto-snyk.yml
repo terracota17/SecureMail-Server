@@ -1,1 +1,9 @@
 
+name: GitHub AUto Snyk evaluation
+on: [push]
+jobs:
+  Auto-snyk-test:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      
