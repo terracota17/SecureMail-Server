@@ -9,12 +9,14 @@ jobs:
   Auto-snyk-test:
     runs-on: self-hosted
     steps:
-      
+      - name: Snyk auth
+        run: snyk-linux auth ${{ secrets.SNYK_AUTH_TOKEN }}
+
       - name: Checkout del código
         uses: actions/checkout@v4
-        
+
       - name: Ejecutar Snyk SAST
-        run: snyk code test --sarif --token ${{ secrets.SNYK_AUTH_TOKEN }}
+        run: snyk-linux code test --sarif
 
       - name: Ejecutar Snyk SCA
-        run: snyk monitor --sarif --token ${{ secrets.SNYK_AUTH_TOKEN }}
+        run: snyk-linux monitor  --sarif
