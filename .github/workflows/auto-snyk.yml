@@ -8,9 +8,6 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
-      - name: Configurar Snyk API Token
-        run: snyk auth ${{ secrets.SNYK_AUTH_TOKEN }}
-
       - name: Ejecutar Snyk Test y Guardar JSON
         run: snyk test --json > snyk-sca-report.json
 
