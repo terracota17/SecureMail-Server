@@ -1,9 +1,12 @@
-
-name: GitHub AUto Snyk evaluation (SCA + SAST)
+name: GitHub Auto Snyk Evaluation
 on: [push]
+
 jobs:
   Auto-snyk-test:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
-      
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Ejecutar Snyk Test y Guardar JSON
+        run: snyk test --json > snyk-sca-report.json
