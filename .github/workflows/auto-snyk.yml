@@ -7,7 +7,6 @@ permissions:
   contents: write
   security-events: write
 
-
 jobs:
   Auto-snyk-test:
     runs-on: self-hosted
