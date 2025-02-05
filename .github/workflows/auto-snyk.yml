@@ -1,4 +1,3 @@
-
 name: GitHub Auto Snyk Evaluation
 on: 
   - push
@@ -7,6 +6,7 @@ on:
 permissions:
   contents: write
   security-events: write
+
 
 jobs:
   Auto-snyk-test:
