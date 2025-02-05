@@ -11,7 +11,8 @@ jobs:
   Auto-snyk-test:
     runs-on: self-hosted
     steps:
-     
+
+
       - name: Checkout del código
         uses: actions/checkout@v4
 
