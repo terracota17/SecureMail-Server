@@ -1,5 +1,7 @@
 name: GitHub Auto Snyk Evaluation
-on: [push, pull_request]
+on: 
+  - push
+  - pull_request
 
 permissions:
   contents: write
@@ -9,14 +11,21 @@ jobs:
   Auto-snyk-test:
     runs-on: self-hosted
     steps:
-      - name: Snyk auth
-        run: snyk-linux auth ${{ secrets.SNYK_AUTH_TOKEN }}
-
       - name: Checkout del código
         uses: actions/checkout@v4
 
-      - name: Ejecutar Snyk SAST
-        run: snyk-linux code test --sarif
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
 
-      - name: Ejecutar Snyk SCA
-        run: snyk-linux monitor  --sarif
+      - name: Ejecutar Snyk SAST
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
+        run: snyk-linux code test --sarif > snyk-sast-report.sarif
+
+      - name: Upload SARIF Report to GitHub Advanced Security
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: snyk-sast-report.sarif
+
+      # - name: Ejecutar Snyk SCA
+      #   run: snyk-linux monitor --sarif
