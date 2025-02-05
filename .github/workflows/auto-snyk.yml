@@ -18,6 +18,8 @@ jobs:
 
       - name: Instalar dependencias
         run: |
+          python3 -m venv venv
+          soruce venv/bin/activate
           pip install -r requirements.txt 
 
       - name: Ejecutar Snyk SAST
