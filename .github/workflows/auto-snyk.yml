@@ -11,9 +11,6 @@ jobs:
   Auto-snyk-test:
     runs-on: self-hosted
     steps:
-
-      #- name: Initialize CodeQL
-       # uses: github/codeql-action/init@v3
      
       - name: Checkout del código
         uses: actions/checkout@v4
@@ -22,7 +19,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
         run: |
-          snyk-linux auth SNYK_TOKEN
+          snyk-linux auth ${{ secrets.SNYK_AUTH_TOKEN }}
           snyk-linux code test --sarif-file-output=snyk-sast-report.sarif 
 
       - name: Upload SARIF Report to GitHub Advanced Security
