@@ -1,6 +1,6 @@
 name: GitHub Auto Snyk Evaluation
 on: 
-  - push
+  #- push
   - pull_request
 
 permissions:
