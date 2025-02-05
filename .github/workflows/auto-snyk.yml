@@ -16,12 +16,14 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt 
+
       - name: Ejecutar Snyk SAST
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
         run: |
-          ls
-          echo ${{ secrets.SNYK_AUTH_TOKEN }}
           snyk-linux auth ${{ secrets.SNYK_AUTH_TOKEN }}
           snyk-linux code test --sarif-file-output=snyk-sast-report.sarif 
 
