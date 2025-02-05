@@ -21,7 +21,9 @@ jobs:
       - name: Ejecutar Snyk SAST
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
-        run: snyk-linux code test --sarif-file-output=snyk-sast-report.sarif 
+        run: |
+          snyk-linux auth SNYK_TOKEN
+          snyk-linux code test --sarif-file-output=snyk-sast-report.sarif 
 
       - name: Upload SARIF Report to GitHub Advanced Security
         uses: github/codeql-action/upload-sarif@v3
