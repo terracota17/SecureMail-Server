@@ -11,11 +11,12 @@ jobs:
   Auto-snyk-test:
     runs-on: self-hosted
     steps:
-      - name: Checkout del código
-        uses: actions/checkout@v4
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
+     
+      - name: Checkout del código
+        uses: actions/checkout@v4
 
       - name: Ejecutar Snyk SAST
         env:
