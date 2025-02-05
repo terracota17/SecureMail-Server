@@ -12,8 +12,8 @@ jobs:
     runs-on: self-hosted
     steps:
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+      #- name: Initialize CodeQL
+       # uses: github/codeql-action/init@v3
      
       - name: Checkout del código
         uses: actions/checkout@v4
